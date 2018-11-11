@@ -1,11 +1,11 @@
 #include <iostream>
 using namespace std;
 
-template<class T>
+template<class T, int size>
 class myStack
 {
 public:
-	myStack(int = 10); // default size = 10
+	myStack(); 
 
 	~myStack()
 	{
@@ -27,23 +27,21 @@ public:
 	}
 
 private:
-	int size;
 	int top;
 	T *stack_p;
 
 };
 
 //Implementation
-template<class T>
-myStack<T>::myStack(int s)
+template<class T, int size>
+myStack<T, size>::myStack()
 {
-	size = s>0 ? s : 10;
 	top = -1;
 	stack_p = new T[size];
 }
 
-template<class T>
-bool myStack<T>::push (const T &value)
+template<class T, int size>
+bool myStack<T, size>::push (const T &value)
 {
 	if ( ! isFull())
 	{
@@ -54,8 +52,8 @@ bool myStack<T>::push (const T &value)
 	return false;
 }
 
-template<class T>
-bool myStack<T>::pop (T &value)
+template<class T, int size>
+bool myStack<T, size>::pop (T &value)
 {
 	if ( ! isEmpty())
 	{
@@ -69,7 +67,7 @@ bool myStack<T>::pop (T &value)
 
 int main ()
 {
-	myStack<int> AAA(20);
+	myStack<int, 20> AAA;
 
 	cout << "Pushing INT into myStack..." << endl;
 	int a = 0;
