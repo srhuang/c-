@@ -23,6 +23,13 @@ public:
 	double bbb;
 };
 
+//with argument
+template <class T, int level>
+void myPrint (T a)
+{
+	cout << a << " : " << level << endl;
+}
+
 int main() 
 {
 	int a=10;
@@ -65,5 +72,8 @@ int main()
 	swaps(c,d);
 	cout << "After swap float : ";
 	cout << '(' << e << ',' << f << ')' << endl;
+
+	//test argument
+	myPrint<int, 9527>(12345678);
 	return 0;
 }
