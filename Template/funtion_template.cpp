@@ -9,6 +9,13 @@ void swaps(T& a1,T& a2)
 	a2=tmp;
 }
 
+//specialization
+template <>
+void swaps<float>(float& a1,float& a2)
+{
+	//do nothing
+}
+
 class A
 {
 public:
@@ -49,5 +56,14 @@ int main()
 	cout << "After swap Class A : ";
 	cout << "mA=" << '(' << mA.aaa << ',' << mA.bbb << ')' <<"\t";
 	cout << "mB=" << '(' << mB.aaa << ',' << mB.bbb << ')' << endl;
+
+	//test specialization
+	float e = 42689.2;
+	float f = 487.0;
+	cout << "Before swap float : ";
+	cout << '(' << e << ',' << f << ')' << endl;
+	swaps(c,d);
+	cout << "After swap float : ";
+	cout << '(' << e << ',' << f << ')' << endl;
 	return 0;
 }
