@@ -1,8 +1,9 @@
 /*****************************************************************
-Name : 
-Date : 2017/02/27
-By   : CharlotteHonG
-Final: 2017/02/27
+Name	:helloworld
+Author	:srhuang
+Email	:lukyandy3162@gmail.com
+History	:
+	20181225 Initial Version
 *****************************************************************/
 #include <iostream>
 using namespace std;
