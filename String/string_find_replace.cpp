@@ -10,6 +10,7 @@ http://www.cplusplus.com/reference/string/string/find_first_of/
 http://www.cplusplus.com/reference/string/string/find_last_of/
 http://www.cplusplus.com/reference/string/string/find_first_not_of/
 http://www.cplusplus.com/reference/string/string/find_last_not_of/
+http://www.cplusplus.com/reference/string/string/replace/
 *****************************************************************/
 #include <iostream>
 using namespace std;
@@ -49,9 +50,26 @@ int main(){
 	cout << "find_first_of gh : " << location << endl;
 
 	/* 
-	 * Replace
+	 * Replace 1
+	 * replace all spaces
 	 */
-	
+	int position = string1.find(" ");
+	while(position != string::npos) {
+		string1.replace(position, 1, ".");
+		position = string1.find(" ", position+1);
+	}
+	cout << "\nAfter first replacement:\n" << string1 << endl;
+
+	/* 
+	 * Replace 2
+	 * replacement with substring
+	 */
+	position = string1.find(".");
+	while(position != string::npos) {
+		string1.replace(position, 1, "xxxyyyzzz", 3, 3);
+		position = string1.find(".", position+1);
+	}
+	cout << "\nAfter second replacement:\n" << string1 << endl;
 	
 	return 0;
 }
