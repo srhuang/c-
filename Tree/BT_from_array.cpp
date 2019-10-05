@@ -44,14 +44,14 @@ void BinaryTree::LevelorderConstruct(stringstream &ss)
 {
     queue<TreeNode*> q;
     TreeNode *current = root;
-    char input;
+    string input;
 
     while(ss >> input){
         //cout << "input=" << input << endl;
 
         //handle the left child
-        if(input != 'x'){
-            TreeNode *newNode = new TreeNode(input-'0');
+        if(input.compare("x")){
+            TreeNode *newNode = new TreeNode(stoi(input));
             current->left = newNode;
             q.push(newNode);
         }
@@ -60,8 +60,8 @@ void BinaryTree::LevelorderConstruct(stringstream &ss)
             break;
         }
         
-        if(input != 'x'){
-            TreeNode *newNode = new TreeNode(input-'0');
+        if(input.compare("x")){
+            TreeNode *newNode = new TreeNode(stoi(input));
             current->right = newNode;
             q.push(newNode);
         }
@@ -75,8 +75,8 @@ int main(int argc, char const *argv[]){
     const char *input = "1 2 3 x x 4 5 6 7";
     BinaryTree BT(input);
 
-    TreeNode *temp = BT.root->right;
-    cout << "test : " << temp->right->val << endl;
+    TreeNode *temp = BT.root;
+    cout << "test : " << temp->val << endl;
 
     return 0;
 }
