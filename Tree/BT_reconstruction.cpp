@@ -38,7 +38,7 @@ public:
 
     //build the tree from inorder and preorder
     TreeNode *buildTreePre(
-        const char *in, const char *pre, int inStart, int inEnd);
+        const char *in, const char *pre, int inStart, int inEnd, int *preIndex);
 
     //build the tree from inorder and postorder
     TreeNode *buildTreePost(
@@ -53,25 +53,24 @@ public:
 };
 
 TreeNode *BinaryTree::buildTreePre(
-    const char *in, const char *pre, int inStart, int inEnd)
+    const char *in, const char *pre, int inStart, int inEnd, int *preIndex)
 {
-    static int preIndex = 0;
-
     if(inStart > inEnd){
         return NULL;
     }
 
     //pick node from preorder
     //cout << "preorder : " << pre[preIndex] << endl;
-    TreeNode *newNode = new TreeNode(pre[preIndex++]);
+    TreeNode *newNode = new TreeNode(pre[*preIndex]);
+    (*preIndex)++;
 
     if(inStart == inEnd)
         return newNode;
 
     int inIndex = search(in, inStart, inEnd, newNode->data);
 
-    newNode->left = buildTreePre(in, pre, inStart, inIndex-1);
-    newNode->right = buildTreePre(in, pre, inIndex+1, inEnd);
+    newNode->left = buildTreePre(in, pre, inStart, inIndex-1, preIndex);
+    newNode->right = buildTreePre(in, pre, inIndex+1, inEnd, preIndex);
 
     return newNode;
 }
@@ -176,12 +175,13 @@ int main(int argc, char const *argv[]){
     const char levelorder[] = { 'A', 'B', 'C', 'D', 'E', 'F'};
     int size_inorder = sizeof(inorder)/sizeof(char);
     int size_level = sizeof(levelorder)/sizeof(char);
+    int preIndex = 0;
     int postIndex = size_inorder-1;
     //cout << "size : " << size << endl;
     BinaryTree BT;
-    //BT.root = BT.buildTreePre(inorder, preorder, 0, size_inorder-1);
+    BT.root = BT.buildTreePre(inorder, preorder, 0, size_inorder-1, &preIndex);
     //BT.root = BT.buildTreePost(inorder, postorder, 0, size_inorder-1, &postIndex);
-    BT.root = BT.buildTreeLevel(inorder, levelorder, 0, size_inorder-1, size_level);
+    //BT.root = BT.buildTreeLevel(inorder, levelorder, 0, size_inorder-1, size_level);
 
     cout << "check in postorder :";
     BT.postorderTraversalRecursion(BT.root);
