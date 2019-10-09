@@ -1,12 +1,19 @@
 /*****************************************************************
-Name	:helloworld
-Author	:srhuang
-Email	:lukyandy3162@gmail.com
-History	:
-	20181225 Initial Version
+Name    :template
+Author  :srhuang
+Email   :lukyandy3162@gmail.com
+History :
+    20190923 Initial Version
 *****************************************************************/
 #include <iostream>
 using namespace std;
+
+/*==============================================================*/
+//Global area
+
+/*==============================================================*/
+//Function area
+
 /*==============================================================*/
 int main(int argc, char const *argv[]){
     cout << "Hello World" << endl;
