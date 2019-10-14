@@ -44,10 +44,11 @@ public:
 BinaryTree::BinaryTree(const char *str)
 {
     stringstream ss;
+    string temp;
     ss << str;
 
-    root = new TreeNode;
-    ss >> root->val;
+    getline(ss, temp, ',');
+    root = new TreeNode(stoi(temp));
 
     LevelorderConstruct(ss);
 }
@@ -56,24 +57,24 @@ void BinaryTree::LevelorderConstruct(stringstream &ss)
 {
     queue<TreeNode*> q;
     TreeNode *current = root;
-    char input;
+    string input;
 
-    while(ss >> input){
+    while(getline(ss, input, ',')){
         cout << "input=" << input << endl;
 
         //handle the left child
-        if(input != 'x'){
-            TreeNode *newNode = new TreeNode(input-'0');
+        if(input.compare("x")){
+            TreeNode *newNode = new TreeNode(stoi(input));
             current->left = newNode;
             q.push(newNode);
         }
 
-        if(!(ss >> input)){
+        if(!(getline(ss, input, ','))){
             break;
         }
         
-        if(input != 'x'){
-            TreeNode *newNode = new TreeNode(input-'0');
+        if(input.compare("x")){
+            TreeNode *newNode = new TreeNode(stoi(input));
             current->right = newNode;
             q.push(newNode);
         }
@@ -251,7 +252,7 @@ void BinaryTree::levelorderTraversalRecursion(TreeNode *parent)
 }
 
 int main(int argc, char const *argv[]){
-    const char *input = "1 2 3 x x 4 5 6 7";
+    const char *input = "1,2,3,x,x,4,5,6,7";
     BinaryTree BT(input);
 
     TreeNode *temp = BT.root->right;
