@@ -57,7 +57,7 @@ void BinaryTree::LevelorderConstruct(stringstream &ss)
             q.push(newNode);
         }
 
-        if(getline(ss, input, ',')){
+        if(!(getline(ss, input, ','))){
             break;
         }
         
