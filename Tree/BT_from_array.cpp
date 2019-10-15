@@ -77,7 +77,7 @@ int main(int argc, char const *argv[]){
     BinaryTree BT(input);
 
     TreeNode *temp = BT.root;
-    cout << "test : " << temp->val << endl;
+    cout << "test : " << temp->right->right->val << endl;
 
     return 0;
 }
