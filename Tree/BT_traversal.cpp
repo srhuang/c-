@@ -60,8 +60,6 @@ void BinaryTree::LevelorderConstruct(stringstream &ss)
     string input;
 
     while(getline(ss, input, ',')){
-        cout << "input=" << input << endl;
-
         //handle the left child
         if(input.compare("x")){
             TreeNode *newNode = new TreeNode(stoi(input));
