@@ -183,31 +183,30 @@ void BinaryTree::postorderTraversalIteration(TreeNode *parent)
     }
 
     stack<TreeNode*> st;
+    TreeNode *current = parent;
     do{
-        //move to leftmost node
-        while(parent){
-            //cout << "parent : " <<parent->val << endl;
-            if(parent->right){
-                st.push(parent->right);
-            }
-            st.push(parent);
+        //move to the leftmost and push right,parent into stack
+        while(current){
+            if(current->right)
+                st.push(current->right);
 
-            parent = parent->left;
+            st.push(current);
+
+            current = current->left;
         }
 
-        //pop the stack and handle with it
-        parent = st.top();
+        //pop the stack and handle
+        current = st.top();
         st.pop();
 
-        if(parent->right && !st.empty() && (st.top()==parent->right)){
-            //handl the right child first
+        //right chiild handle first
+        if(current->right && !st.empty() && (st.top()==current->right)){
             st.pop();
-            st.push(parent);
-            parent = parent->right;
-        }else{
-            //do the right thing
-            cout << " " << parent->val;
-            parent = NULL; //let next iteration only pop the stack
+            st.push(current);
+            current = current->right;
+        }else{//left and right child has been handled
+            cout << " " << current->val;
+            current = NULL; //only need to pop the stack
         }
     }while(!st.empty());
 }
