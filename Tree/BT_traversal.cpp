@@ -133,32 +133,10 @@ void BinaryTree::levelorderTraversalIteration(TreeNode *parent)
     }//while
 }
 
-void BinaryTree::inorderTraversalIteration(TreeNode *parent)
-{
-    stack<TreeNode*> st;
-    TreeNode *current = parent;
-
-    while(current != NULL || !st.empty()){
-        //reach the leftmost node of the current node
-        while(current != NULL){
-            st.push(current);
-            current = current->left;
-        }
-
-        current = st.top();
-        st.pop();
-
-        cout << " " << current->val;
-
-        current = current->right;
-    }
-}
-
 void BinaryTree::preorderTraversalIteration(TreeNode *parent)
 {
-    if(NULL == parent){
+    if(NULL == parent)
         return;
-    }
 
     stack<TreeNode*> st;
     st.push(parent);
@@ -167,6 +145,7 @@ void BinaryTree::preorderTraversalIteration(TreeNode *parent)
         TreeNode *current = st.top();
         st.pop();
 
+        //do the right thing
         cout << " " << current->val;
 
         if(current->right)
@@ -176,38 +155,67 @@ void BinaryTree::preorderTraversalIteration(TreeNode *parent)
     }
 }
 
+void BinaryTree::inorderTraversalIteration(TreeNode *parent)
+{
+    stack<TreeNode*> st;
+    TreeNode *current = parent;
+
+    while(current || !st.empty()){
+        //step 1:reach the leftmost node
+        while(current){
+            st.push(current);
+            current = current->left;
+        }
+
+        //step 2:pop the stack
+        current = st.top();
+        st.pop();
+
+        //step 3:do the right thing
+        cout << " " << current->val;
+
+        //step 4:handle the right child if need
+        current = current->right;
+    }
+}
+
 void BinaryTree::postorderTraversalIteration(TreeNode *parent)
 {
-    if(NULL == parent){
+    if(NULL == parent)
         return;
-    }
 
     stack<TreeNode*> st;
     TreeNode *current = parent;
+
     do{
-        //move to the leftmost and push right,parent into stack
+        //step 1:reach the leftmost node
         while(current){
+            //push right child
             if(current->right)
                 st.push(current->right);
-
+            //push the current
             st.push(current);
 
             current = current->left;
         }
 
-        //pop the stack and handle
+        //step 2:pop the stack
         current = st.top();
         st.pop();
 
-        //right chiild handle first
-        if(current->right && !st.empty() && (st.top()==current->right)){
+        //step 3:handle the right child first
+        if(current->right && !st.empty() && st.top() == current->right)
+        {
             st.pop();
             st.push(current);
             current = current->right;
-        }else{//left and right child has been handled
+        }else{//step 4:do the right thing
             cout << " " << current->val;
-            current = NULL; //only need to pop the stack
+
+            //for next pop
+            current = NULL;
         }
+
     }while(!st.empty());
 }
 
