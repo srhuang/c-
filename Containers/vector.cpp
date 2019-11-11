@@ -22,6 +22,28 @@ void printAll(vector<int> &vec)
     cout << endl;
 }
 
+/*Test Constructor and Deconstructor*/
+vector<string> foo()
+{
+    vector<string> result;
+    
+    result.push_back("aaa");
+    result.push_back("bbb");
+    result.push_back("ccc");
+    cout << "address of result(foo) :" << &result << endl;
+    return result;
+}
+
+vector<string>* foo2()
+{
+    vector<string> *result = new vector<string>;
+    result->push_back("aaa");
+    result->push_back("bbb");
+    result->push_back("ccc");
+    cout << "address of result(foo2) :" << result << endl;
+    return result;
+}
+
 int main(int argc, char const *argv[]){
     /*
      * Initialization
@@ -120,6 +142,21 @@ int main(int argc, char const *argv[]){
     vector<int>().swap(vec4);
     printAll(vec4);
 
+    //test constructor
+    vector<string> testFoo;
+    testFoo = foo(); //this will copy all elements
+    cout << "address of testFoo :" << &testFoo << endl;
+    cout << "test constructor :";
+    cout << testFoo.back() << endl;
+
+    vector<string> *testFoo2;
+    testFoo2 = foo2(); //this will copy all elements
+    cout << "address of testFoo2 :" << testFoo2 << endl;
+    cout << "test constructor :";
+    cout << testFoo2->back() << endl;
+    delete testFoo2;
+
     return 0;
 }
 /*==============================================================*/
+
