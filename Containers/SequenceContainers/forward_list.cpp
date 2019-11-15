@@ -18,7 +18,6 @@ Outline
 #include <iostream>
 #include <forward_list>
 using namespace std;
-
 /*==============================================================*/
 //Global area
 
@@ -27,12 +26,10 @@ using namespace std;
 void printAll(forward_list<int> &input)
 {
     forward_list<int>::iterator itr;
-    cout << "printf all :";
     for(itr=input.begin(); itr!=input.end(); itr++)
     {
         cout << *itr << " ";
     }
-    cout << endl;
 }
 
 /*==============================================================*/
@@ -40,45 +37,52 @@ int main(int argc, char const *argv[]){
     /*
      * Initialization
      */
+    cout << "\nInitialization" << endl;
 
-    //Empty list
+    //Empty
     forward_list<int> fl;
     fl.push_front(10);
     fl.push_front(20);
     fl.push_front(30);
-    cout << "\tpush_front" << endl;
+    cout << "fl :";
     printAll(fl);
+    cout << endl;
 
-    // [c++11] Initializing like arrays
+    // [c++11] Initializing with contents
     forward_list<string> fl2{"aaa", "bbb", "ccc"};
 
-    // Default value of all 5 ints will be 0
+    // number with zero value
     forward_list<int> fl3(5);
-    cout << "fl3 ";
+    cout << "fl3 :";
     printAll(fl3);
+    cout << endl;
 
-    // Create a vector of size n with all values as 10.
+    // number with specific value
     int n=3;
     forward_list<int> fl4(n, 10);
-    cout << "fl4 ";
+    cout << "fl4 :";
     printAll(fl4);
+    cout << endl;
 
     // Initializing from array
     int array[]={10,20,30};
     int size = sizeof(array)/sizeof(array[0]);
     forward_list<int> fl5(array, array+size);
-    cout << "fl5 ";
+    cout << "fl5 :";
     printAll(fl5);
+    cout << endl;
 
-    // Initializing from another vector
+    // Initializing by iterator
     forward_list<int> fl6(fl4.begin(), fl4.end());
-    cout << "fl6 ";
+    cout << "fl6 :";
     printAll(fl6);
+    cout << endl;
 
     /*
      * Iterators
      */
-    cout << "\nIterators :";
+    cout << "\nIterators" << endl;
+
     forward_list<int>::iterator it;
     for(it=fl.begin(); it!=fl.end(); it++)
     {
@@ -89,11 +93,14 @@ int main(int argc, char const *argv[]){
     /*
      * Capacity
      */
+    cout << "\nCapacity" << endl;
+
     cout << "empty:" << fl.empty() << endl;
 
     /*
      * Element Access
      */
+    cout << "\nElement Access" << endl;
 
     //only front()
     cout << "front :" << fl.front() << endl;
@@ -101,33 +108,44 @@ int main(int argc, char const *argv[]){
     /*
      * Modifiers
      */
+    cout << "\nModifiers " << endl;
 
     //push_front() / pop_front()
-    cout << "\nModifiers " << endl;
     fl.push_front(40);
-    cout << "back :" << fl.front() << endl;
+    cout << "push_front :" << fl.front() << endl;
     fl.pop_front();
-    cout << "back :" << fl.front() << endl;
+    cout << "pop_front :" << fl.front() << endl;
 
     //insert_after() / erase_after()
     forward_list<int>::iterator itr2;
     itr2 = fl.begin();
     fl.insert_after(itr2, 50);
+    cout << "insert_after() :";
     printAll(fl);
+    cout << endl;
 
     advance(itr2, 2);
     fl.erase_after(itr2);
+
+    cout << "erase_after() :";
     printAll(fl);
+    cout << endl;
 
     //clear() / swap()
     fl.clear();
-    cout << "\tafter clear() " << endl;
+    cout << "clear() :";
     printAll(fl);
+    cout << endl;
 
+    cout << "before swap() :";
     printAll(fl4);
+    cout << endl;
+
     forward_list<int>().swap(fl4);
-    cout << "\tafter swap() " << endl;
+
+    cout << "after swap() :";
     printAll(fl4);
+    cout << endl;
 
     return 0;
 }
