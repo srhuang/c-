@@ -68,7 +68,7 @@ int main(int argc, char const *argv[]){
     vector<string> vec2{"aaa", "bbb", "ccc"};
 
     // Default value of all 5 ints will be 0
-    vector<int> vec3(6);
+    vector<int> vec3(5);
 
     // Create a vector of size n with all values as 10.
     int n=3;
