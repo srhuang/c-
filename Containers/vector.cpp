@@ -3,10 +3,19 @@ Name    :vector
 Author  :srhuang
 Email   :lukyandy3162@gmail.com
 History :
-    20190927 Initial Version
     20191108 extend the vector
-http://www.cplusplus.com/reference/vector/vector/
+    20190927 Initial Version
 *****************************************************************/
+/*****************************************************************
+Outline
+    1. Initialization
+    2. Iterators
+    3. Capacity
+    4. Element Access
+    5. Modifiers
+    6. Others
+*****************************************************************/
+
 #include <iostream>
 #include <vector>
 using namespace std;
