@@ -23,7 +23,6 @@ using namespace std;
 
 void printAll(vector<int> &vec)
 {
-    int size = vec.size();
     cout << "print all :";
     for(int i=0; i<size; i++){
         cout << vec.at(i) << " ";

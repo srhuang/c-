@@ -26,7 +26,6 @@ using namespace std;
 //Function area
 void printAll(list<int> &input)
 {
-    int size = input.size();
     list<int>::iterator itr;
     cout << "printf all :";
     for(itr=input.begin(); itr!=input.end(); itr++)
