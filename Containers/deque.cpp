@@ -89,6 +89,23 @@ int main(int argc, char const *argv[]){
      * Element Access
      */
 
+    //operator [] There is no protection for the index.
+    size = dk.size();
+    cout << "operator[] :";
+    for(int i=0; i<size; i++){
+        cout << dk[i] << " ";
+    }
+    cout << endl;
+
+    //at(i), The function automatically checks 
+    //whether n is within the bounds of valid elements in the vector.
+    cout << "at() :";
+    size = dk.size();
+    for(int i=0; i<size; i++){
+        cout << dk.at(i) << " ";
+    }
+    cout << endl;
+
     //front() / back()
     cout << "front :" << dk.front() << " back :" << dk.back() << endl;
 
