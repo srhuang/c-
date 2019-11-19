@@ -39,7 +39,7 @@ int main(int argc, char const *argv[]){
      */
     cout << "\nInitialization" << endl;
 
-    //Empty
+    //Using default constructor
     list<int> l;
     l.push_back(10);
     l.push_back(20);
@@ -48,23 +48,23 @@ int main(int argc, char const *argv[]){
     printAll(l);
     cout << endl;
 
-    // [c++11] Initializing with contents
+    //Using Initializer list constructor
     list<string> l2{"aaa", "bbb", "ccc"};
 
-    // number with zero value
+    //Using fill constructor
     list<int> l3(5);
     cout << "l3 :";
     printAll(l3);
     cout << endl;
 
-    // number with specific value
+    //Using fill constructor
     int n=3;
     list<int> l4(n, 10);
     cout << "l4 :";
     printAll(l4);
     cout << endl;
 
-    // Initializing from array
+    //Using range constructor
     int array[]={10,20,30};
     int size = sizeof(array)/sizeof(array[0]);
     list<int> l5(array, array+size);
@@ -72,7 +72,7 @@ int main(int argc, char const *argv[]){
     printAll(l5);
     cout << endl;
 
-    // Initializing by iterator
+    //Using range constructor
     list<int> l6(l4.begin(), l4.end());
     cout << "l6 :";
     printAll(l6);

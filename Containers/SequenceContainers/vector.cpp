@@ -35,7 +35,7 @@ int main(int argc, char const *argv[]){
      */
     cout << "\nInitialization" << endl;
 
-    // Empty
+    //Using default constructor
     vector<int> vec; 
     vec.push_back(10);
     vec.push_back(20);
@@ -44,23 +44,23 @@ int main(int argc, char const *argv[]){
     printAll(vec);
     cout << endl;
 
-    // [c++11] Initializing with contents
+    //Using Initializer list constructor
     vector<string> vec2{"aaa", "bbb", "ccc"};
 
-    // number with zero value
+    //Using fill constructor
     vector<int> vec3(5);
     cout << "vec3 :";
     printAll(vec3);
     cout << endl;
 
-    // number with specific value
+    //Using fill constructor
     int n=3;
     vector<int> vec4(n, 10);
     cout << "vec4 :";
     printAll(vec4);
     cout << endl; 
 
-    // Initializing from array
+    //Using range constructor
     int array[]={10,20,30};
     int size = sizeof(array)/sizeof(array[0]);
     vector<int> vec5(array, array+size);
@@ -68,7 +68,7 @@ int main(int argc, char const *argv[]){
     printAll(vec5);
     cout << endl;
 
-    // Initializing by iterator
+    //Using range constructor
     vector<int> vec6(vec4.begin(), vec4.end());
     cout << "vec6 :";
     printAll(vec6);

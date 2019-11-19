@@ -35,7 +35,7 @@ int main(int argc, char const *argv[]){
      */
     cout << "\nInitialization" << endl;
 
-    //Empty
+    //Using default constructor
     deque<int> dk;
     dk.push_back(10);
     dk.push_back(20);
@@ -44,23 +44,23 @@ int main(int argc, char const *argv[]){
     printAll(dk);
     cout << endl;
 
-    // [c++11] Initializing with contents
+    //Using Initializer list constructor
     deque<string> dk2{"aaa", "bbb", "ccc"};
 
-    // number with zero value
+    //Using fill constructor
     deque<int> dk3(5);
     cout << "dk3 :";
     printAll(dk3);
     cout << endl;
 
-    // number with specific value
+    //Using fill constructor
     int n=3;
     deque<int> dk4(n, 10);
     cout << "dk4 :";
     printAll(dk4);
     cout << endl;
 
-    // Initializing from array
+    //Using range constructor
     int array[]={10,20,30};
     int size = sizeof(array)/sizeof(array[0]);
     deque<int> dk5(array, array+size);
@@ -68,7 +68,7 @@ int main(int argc, char const *argv[]){
     printAll(dk5);
     cout << endl;
 
-    // Initializing from another vector
+    //Using range constructor
     deque<int> dk6(dk4.begin(), dk4.end());
     cout << "dk6 :";
     printAll(dk6);

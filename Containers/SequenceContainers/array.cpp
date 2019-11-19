@@ -34,7 +34,7 @@ int main(int argc, char const *argv[]){
      */
     cout << "\nInitialization" << endl;
 
-    // Empty
+    //Using default constructor
     array<int, 3> arr;
     arr[0]=10;
     arr[1]=20;
@@ -43,16 +43,16 @@ int main(int argc, char const *argv[]){
     printAll(arr);
     cout << endl;
 
-    // [c++11] Initializing with contents
+    //Using Initializer list constructor
     array<string, 3> arr2{"aaa", "bbb", "ccc"};
 
-    // number with zero value
+    //Using fill constructor
     array<int, 5> arr3{0};
     cout << "arr3 :";
     printAll(arr3);
     cout << endl;
 
-    // number with specific value
+    //Using fill constructor
     int n=3;
     array<int, 3> arr4; 
     arr4.fill(10);

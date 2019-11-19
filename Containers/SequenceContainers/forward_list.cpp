@@ -39,7 +39,7 @@ int main(int argc, char const *argv[]){
      */
     cout << "\nInitialization" << endl;
 
-    //Empty
+    //Using default constructor
     forward_list<int> fl;
     fl.push_front(10);
     fl.push_front(20);
@@ -48,23 +48,23 @@ int main(int argc, char const *argv[]){
     printAll(fl);
     cout << endl;
 
-    // [c++11] Initializing with contents
+    //Using Initializer list constructor
     forward_list<string> fl2{"aaa", "bbb", "ccc"};
 
-    // number with zero value
+    //Using fill constructor
     forward_list<int> fl3(5);
     cout << "fl3 :";
     printAll(fl3);
     cout << endl;
 
-    // number with specific value
+    //Using fill constructor
     int n=3;
     forward_list<int> fl4(n, 10);
     cout << "fl4 :";
     printAll(fl4);
     cout << endl;
 
-    // Initializing from array
+    //Using range constructor
     int array[]={10,20,30};
     int size = sizeof(array)/sizeof(array[0]);
     forward_list<int> fl5(array, array+size);
@@ -72,7 +72,7 @@ int main(int argc, char const *argv[]){
     printAll(fl5);
     cout << endl;
 
-    // Initializing by iterator
+    //Using range constructor
     forward_list<int> fl6(fl4.begin(), fl4.end());
     cout << "fl6 :";
     printAll(fl6);
