@@ -44,7 +44,7 @@ int main(int argc, char const *argv[]){
      */
     cout << "\nInitialization" << endl;
 
-    //Using default constuctor
+    //Using default constructor
     multiset<int> myset;
     myset.insert(10);
     myset.insert(20);
@@ -53,7 +53,7 @@ int main(int argc, char const *argv[]){
     printAll(myset);
     cout << endl;
 
-    //Using Initializer list
+    //Using Initializer list constructor
     multiset<int> myset1({9,5,2,7,9,1,4,6,9});
 
     cout << "myset1 :";

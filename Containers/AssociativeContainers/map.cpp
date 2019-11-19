@@ -45,7 +45,7 @@ int main(int argc, char const *argv[]){
      */
     cout << "\nInitialization" << endl;
 
-    //Using default constuctor
+    //Using default constructor
     map<int, string> mymap;
     mymap.insert(pair<int, string>(20, "twenty"));
     mymap.insert(make_pair(10, "ten"));
@@ -54,7 +54,7 @@ int main(int argc, char const *argv[]){
     printAll(mymap);
     cout << endl;
 
-    //Using Initializer list
+    //Using Initializer list constructor
     map<int, string> mymap1({{9,"nine"},{5, "five"},{2, "two"},
         {7, "seven"},{1, "one"},{4, "four"},{6, "six"}});
 
