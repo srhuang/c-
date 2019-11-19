@@ -34,7 +34,7 @@ int main(int argc, char const *argv[]){
      */
     cout << "\nInitialization" << endl;
 
-    // Empty
+    //Using default constructor
     stack<int> st;
     st.push(10);
     st.push(20);

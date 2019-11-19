@@ -44,7 +44,7 @@ int main(int argc, char const *argv[]){
      */
     cout << "\nInitialization" << endl;
 
-    // Empty
+    //Using default constructor
     priority_queue<int> pq;
     pq.push(10);
     pq.push(30);

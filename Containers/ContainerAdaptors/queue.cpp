@@ -33,7 +33,7 @@ int main(int argc, char const *argv[]){
      */
     cout << "\nInitialization" << endl;
 
-    // Empty
+    //Using default constructor
     queue<int> q;
     q.push(10);
     q.push(20);
