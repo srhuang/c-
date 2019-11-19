@@ -53,6 +53,13 @@ int main(int argc, char const *argv[]){
     printAll(myset);
     cout << endl;
 
+    //Initializing with contents
+    multiset<int> myset1({9,5,2,7,9,1,4,6,9});
+
+    cout << "myset1 :";
+    printAll(myset1);
+    cout << endl;
+
     //Initializing with containers
     vector<int> vec{9,5,2,7};
     multiset<int> myset2(vec.begin(), vec.end());

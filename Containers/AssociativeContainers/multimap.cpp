@@ -54,6 +54,14 @@ int main(int argc, char const *argv[]){
     printAll(mymap);
     cout << endl;
 
+    //Initializing with contents
+    multimap<int, string> mymap1({{9,"nine"},{5, "five"},{2, "two"},
+        {7, "seven"},{9,"nine"},{1, "one"},{4, "four"},{6, "six"},{9,"nine"}});
+
+    cout << "mymap1 :";
+    printAll(mymap1);
+    cout << endl;
+
     //Initializing with containers
     vector<pair<int, string>> vec{{9,"nine"}, {5, "five"}, {2, "two"}, {7, "seven"}};
     multimap<int, string> mymap2(vec.begin(), vec.end());

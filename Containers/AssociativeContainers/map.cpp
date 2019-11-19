@@ -54,6 +54,14 @@ int main(int argc, char const *argv[]){
     printAll(mymap);
     cout << endl;
 
+    //Initializing with contents
+    map<int, string> mymap1({{9,"nine"},{5, "five"},{2, "two"},
+        {7, "seven"},{1, "one"},{4, "four"},{6, "six"}});
+
+    cout << "mymap1 :";
+    printAll(mymap1);
+    cout << endl;
+
     //Initializing with containers
     vector<pair<int, string>> vec{{9,"nine"}, {5, "five"}, {2, "two"}, {7, "seven"}};
     map<int, string> mymap2(vec.begin(), vec.end());
