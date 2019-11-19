@@ -44,7 +44,7 @@ int main(int argc, char const *argv[]){
      */
     cout << "\nInitialization" << endl;
 
-    // Empty
+    //Using default constuctor
     set<int> myset;
     myset.insert(10);
     myset.insert(20);
@@ -53,14 +53,14 @@ int main(int argc, char const *argv[]){
     printAll(myset);
     cout << endl;
 
-    //Initializing with contents
+    //Using Initializer list
     set<int> myset1({9,5,2,7,1,4,6});
 
     cout << "myset1 :";
     printAll(myset1);
     cout << endl;
 
-    //Initializing with containers
+    //Using range constructor
     vector<int> vec{9,5,2,7};
     set<int> myset2(vec.begin(), vec.end());
 
@@ -68,7 +68,7 @@ int main(int argc, char const *argv[]){
     printAll(myset2);
     cout << endl;
 
-    //Initializing with set
+    //Using copy constructor
     set<int> myset3(myset);
 
     cout << "myset3 :";

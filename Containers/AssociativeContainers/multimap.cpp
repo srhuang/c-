@@ -45,7 +45,7 @@ int main(int argc, char const *argv[]){
      */
     cout << "\nInitialization" << endl;
 
-    // Empty
+    //Using default constuctor
     multimap<int, string> mymap;
     mymap.insert(pair<int, string>(20, "twenty"));
     mymap.insert(make_pair(10, "ten"));
@@ -54,7 +54,7 @@ int main(int argc, char const *argv[]){
     printAll(mymap);
     cout << endl;
 
-    //Initializing with contents
+    //Using Initializer list
     multimap<int, string> mymap1({{9,"nine"},{5, "five"},{2, "two"},
         {7, "seven"},{9,"nine"},{1, "one"},{4, "four"},{6, "six"},{9,"nine"}});
 
@@ -62,7 +62,7 @@ int main(int argc, char const *argv[]){
     printAll(mymap1);
     cout << endl;
 
-    //Initializing with containers
+    //Using range constructor
     vector<pair<int, string>> vec{{9,"nine"}, {5, "five"}, {2, "two"}, {7, "seven"}};
     multimap<int, string> mymap2(vec.begin(), vec.end());
 
@@ -70,7 +70,7 @@ int main(int argc, char const *argv[]){
     printAll(mymap2);
     cout << endl;
 
-    //Initializing with map
+    //Using copy constructor
     multimap<int, string> mymap3(mymap);
 
     cout << "mymap3 :";
