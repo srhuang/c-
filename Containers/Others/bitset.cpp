@@ -38,7 +38,7 @@ int main(int argc, char const *argv[]){
     cout << "bs3 :" << bs3 << endl;
 
     /*
-     * Mate
+     * Meta
      */
     cout << "\nMeta" << endl;
 
