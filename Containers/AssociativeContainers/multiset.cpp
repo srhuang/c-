@@ -137,18 +137,20 @@ int main(int argc, char const *argv[]){
     printAll(myset);
     cout << endl;
 
-    //erase()
+    //erase() by key
     myset.erase(20);
     cout << "erase myset :";
     printAll(myset);
     cout << endl;
 
+    //erase() by position
     it = myset.find(30);
     myset.erase(it);
     cout << "erase myset :";
     printAll(myset);
     cout << endl;
 
+    //erase() by range
     it = myset.find(25);
     myset.erase(it, myset.end());
     cout << "erase myset :";

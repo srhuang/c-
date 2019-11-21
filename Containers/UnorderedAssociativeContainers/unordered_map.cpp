@@ -109,12 +109,13 @@ int main(int argc, char const *argv[]){
     printAll(mymap);
     cout << endl;
 
-    //erase()
+    //erase() by key
     mymap.erase(22);
     cout << "erase mymap :";
     printAll(mymap);
     cout << endl;
 
+    //erase() by position
     unordered_map<int, string>::iterator it;
     it = mymap.find(30);
     mymap.erase(it);
@@ -122,6 +123,7 @@ int main(int argc, char const *argv[]){
     printAll(mymap);
     cout << endl;
 
+    //erase() by range
     it = mymap.find(25);
     mymap.erase(it, mymap.end());
     cout << "erase mymap :";
