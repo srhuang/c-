@@ -98,13 +98,13 @@ int main(int argc, char const *argv[]){
     cout << "\nModifiers " << endl;
 
     //insert()
-    pair<unordered_map<int, string>::iterator,bool> ret;
-    ret = mymap.insert({25, "twenty-five"});
-    //[C++11] The function optimizes its insertion time 
-    //if position points to the element 
-    //that will follow the inserted element (or to the end, if it would be the last).
-    mymap.insert(ret.first, {22, "twenty-two"}); //efficiency inserting
-    mymap.insert(ret.first, {27, "twenty-seven"}); //no efficiency inserting
+    pair<int, string> input(10, "ten");
+    mymap.insert(input); //copy insertion
+    input.first = 15;
+    input.second = "fifthteen";
+    mymap.insert(pair<int, string>(40, "fourty")); //move insertion
+    mymap.insert(mymap2.begin(), mymap2.end()); //range insertion
+    mymap.insert({25, "twenty-five"}); //initializer list insertion
     cout << "insert mymap :";
     printAll(mymap);
     cout << endl;

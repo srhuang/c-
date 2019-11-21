@@ -130,6 +130,17 @@ int main(int argc, char const *argv[]){
     printAll(mymap);
     cout << endl;
 
+    pair<int, string> input{99, "ninety-nine"};
+    mymap.insert(input); //copy insertion
+    input.first = 98;
+    mymap.insert(pair<int, string>{1, "one"}); //move insertion
+    mymap.insert(vec.begin(), vec.end()); //range insertion
+    mymap.insert({{95, "ninety-five"}, 
+        {96, "ninety-six"}, {97, "ninety-seven"}}); //initializer list insertion
+    cout << "insert mymap :";
+    printAll(mymap);
+    cout << endl;
+
     //erase()
     mymap.erase(20);
     cout << "erase mymap :";

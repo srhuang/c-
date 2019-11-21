@@ -127,6 +127,16 @@ int main(int argc, char const *argv[]){
     printAll(myset);
     cout << endl;
 
+    int input = 37;
+    myset.insert(input); //copy insertion
+    input = 38;
+    myset.insert(33+44); //move insertion
+    myset.insert(vec.begin(), vec.end()); //range insertion
+    myset.insert({97,98,99}); //initializer list insertion
+    cout << "insert myset :";
+    printAll(myset);
+    cout << endl;
+
     //erase()
     myset.erase(20);
     cout << "erase myset :";
