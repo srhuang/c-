@@ -6,6 +6,8 @@ History :
     20191123 Initial Version
 *****************************************************************/
 #include <iostream>
+#define DEBUG (1)
+#define SCALE (100)
 using namespace std;
 using namespace std::chrono; 
 
@@ -83,27 +85,27 @@ void selection_sort(int *input, int n)
 
 /*==============================================================*/
 int main(int argc, char const *argv[]){
-    int n=10000;
+    int n=SCALE;
 
     //generate data
     int *ascending_data = ascending_case(n);
     int *descending_data = descending_case(n);
     int *random_data = random_case(n);
 
-    /*
+    #if DEBUG
     cout << "Before sorting :";
     for(int i=0; i<n; i++){
         cout << random_data[i] << " ";
     }
     cout << endl;
-    */
+    #endif
 
     //sort
     auto start = high_resolution_clock::now(); 
     selection_sort(ascending_data, n);
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start); 
-    cout << "Time taken by ascending_data: "
+    cout << "\nTime taken by ascending_data: "
          << duration.count() << " microseconds" << endl; 
 
     start = high_resolution_clock::now(); 
@@ -120,13 +122,13 @@ int main(int argc, char const *argv[]){
     cout << "Time taken by random data: "
          << duration.count() << " microseconds" << endl; 
 
-    /*
+    #if DEBUG
     cout << "\nAfter sorting :";
     for(int i=0; i<n; i++){
         cout << random_data[i] << " ";
     }
     cout << endl;
-    */
+    #endif
      
     
     return 0;
