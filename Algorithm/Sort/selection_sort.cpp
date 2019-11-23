@@ -6,7 +6,7 @@ History :
     20191123 Initial Version
 *****************************************************************/
 #include <iostream>
-#define DEBUG (1)
+#define DEBUG (0)
 #define SCALE (100)
 using namespace std;
 using namespace std::chrono; 
