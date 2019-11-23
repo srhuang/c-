@@ -64,6 +64,8 @@ int *best_case(int number)
 
 void insertion_sort(int *input, int n)
 {
+    cout << endl;
+    int count = 0;
     //one by one insert each element
     for(int i=1; i<n; i++){
         int temp = input[i];
@@ -71,11 +73,13 @@ void insertion_sort(int *input, int n)
         //find the position and shift the last element
         int j=i;
         while((j>0) && (temp < input[j-1])){
+            count++;
             input[j] = input[j-1];
             j--;
         }//for j
         input[j] = temp;
     }//for i
+    cout << "shift count :" << count << endl;
 }
 
 /*==============================================================*/
@@ -100,7 +104,7 @@ int main(int argc, char const *argv[]){
     insertion_sort(random_data, n);
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start); 
-    cout << "\nTime taken by random_data: "
+    cout << "Time taken by random_data: "
          << duration.count() << " microseconds" << endl; 
 
     start = high_resolution_clock::now(); 
