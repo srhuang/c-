@@ -14,20 +14,20 @@ using namespace std::chrono;
 
 /*==============================================================*/
 //Global area
-class MaxHeap{
+class MaxBinaryHeap{
     void Heapify(vector<int> &input, int root_index);
     void BuildHeap(vector<int> &input);
 public:
     vector<int> data;
     int max_index;
-    MaxHeap(int *arr, int size);
+    MaxBinaryHeap(int *arr, int size);
     void insert(int input);
     int pop();
     int peek();
 };
 
 //top-down
-void MaxHeap::Heapify(vector<int> &input, int parent_index)
+void MaxBinaryHeap::Heapify(vector<int> &input, int parent_index)
 {
     int left_index = 2*parent_index + 1;
     int right_index = 2*parent_index + 2;
@@ -63,14 +63,14 @@ void MaxHeap::Heapify(vector<int> &input, int parent_index)
 }
 
 //bottom-up
-void MaxHeap::BuildHeap(vector<int> &input)
+void MaxBinaryHeap::BuildHeap(vector<int> &input)
 {
     for(int i=(max_index-1)/2; i>=0; i--){
         Heapify(input, i);
     }
 }
 
-MaxHeap::MaxHeap(int *arr, int size)
+MaxBinaryHeap::MaxBinaryHeap(int *arr, int size)
 {
     data = vector<int>(arr, arr+size);
     max_index = size-1;
@@ -78,7 +78,7 @@ MaxHeap::MaxHeap(int *arr, int size)
 }
 
 //public insert
-void MaxHeap::insert(int input)
+void MaxBinaryHeap::insert(int input)
 {
     data.push_back(input);
     max_index = data.size() - 1;
@@ -97,7 +97,7 @@ void MaxHeap::insert(int input)
     }
 }
 
-int MaxHeap::pop()
+int MaxBinaryHeap::pop()
 {
     int result = data[0];
 
@@ -111,7 +111,7 @@ int MaxHeap::pop()
     return result;
 }
 
-int MaxHeap::peek()
+int MaxBinaryHeap::peek()
 {
     return data[0];
 }
@@ -155,7 +155,7 @@ int main(int argc, char const *argv[]){
     cout << endl;
 #endif
 
-    MaxHeap myHeap(random_data, n);
+    MaxBinaryHeap myHeap(random_data, n);
 
 
 
