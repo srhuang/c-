@@ -19,7 +19,7 @@ class MaxBinaryHeap{
     void BuildHeap(vector<int> &input);
 public:
     vector<int> data;
-    int max_index;
+    int size;
     MaxBinaryHeap(int *arr, int size);
     void insert(int input);
     int pop();
@@ -34,7 +34,7 @@ void MaxBinaryHeap::Heapify(vector<int> &input, int parent_index)
     int largest_index;
 
     //check left child
-    if((left_index <= max_index) &&
+    if((left_index < size) &&
         input[left_index] > input[parent_index])
     {
         largest_index = left_index;
@@ -43,7 +43,7 @@ void MaxBinaryHeap::Heapify(vector<int> &input, int parent_index)
     }
 
     //check right child
-    if((right_index <= max_index) &&
+    if((right_index < size) &&
         input[right_index] > input[largest_index])
     {
         largest_index = right_index;
@@ -65,7 +65,7 @@ void MaxBinaryHeap::Heapify(vector<int> &input, int parent_index)
 //bottom-up
 void MaxBinaryHeap::BuildHeap(vector<int> &input)
 {
-    for(int i=(max_index-1)/2; i>=0; i--){
+    for(int i=(size-2)/2; i>=0; i--){
         Heapify(input, i);
     }
 }
@@ -73,7 +73,7 @@ void MaxBinaryHeap::BuildHeap(vector<int> &input)
 MaxBinaryHeap::MaxBinaryHeap(int *arr, int size)
 {
     data = vector<int>(arr, arr+size);
-    max_index = size-1;
+    this->size = size;
     BuildHeap(data);
 }
 
@@ -81,8 +81,8 @@ MaxBinaryHeap::MaxBinaryHeap(int *arr, int size)
 void MaxBinaryHeap::insert(int input)
 {
     data.push_back(input);
-    max_index = data.size() - 1;
-    int current_index = max_index;
+    size = data.size();
+    int current_index = size-1;
     int parent_index = (current_index-1)/2;
     while(current_index > 0 && (data[parent_index] < data[current_index]))
     {
@@ -103,7 +103,7 @@ int MaxBinaryHeap::pop()
 
     data[0] = data.back();
     data.pop_back();
-    max_index = data.size() - 1;
+    size = data.size();
 
     //top-down
     Heapify(data, 0);
@@ -143,6 +143,7 @@ int *random_case(int number)
 /*==============================================================*/
 int main(int argc, char const *argv[]){
     int n=SCALE;
+    int size;
 
     //generate data
     int *random_data = random_case(n);
@@ -161,7 +162,8 @@ int main(int argc, char const *argv[]){
 
 #if DEBUG
     cout << "\nAfter build Heap :";
-    for(int i=0; i<=myHeap.max_index; i++){
+    size = myHeap.size;
+    for(int i=0; i<size; i++){
         cout << myHeap.data[i] << " ";
     }
     cout << endl;
@@ -171,7 +173,8 @@ int main(int argc, char const *argv[]){
 
 #if DEBUG
     cout << "\nAfter insert :";
-    for(int i=0; i<=myHeap.max_index; i++){
+    size = myHeap.size;
+    for(int i=0; i<size; i++){
         cout << myHeap.data[i] << " ";
     }
     cout << endl;
@@ -181,7 +184,8 @@ int main(int argc, char const *argv[]){
     
 #if DEBUG
     cout << "\nAfter pop :";
-    for(int i=0; i<=myHeap.max_index; i++){
+    size = myHeap.size;
+    for(int i=0; i<size; i++){
         cout << myHeap.data[i] << " ";
     }
     cout << endl;
@@ -190,8 +194,8 @@ int main(int argc, char const *argv[]){
     cout << "peek :" << myHeap.peek() << endl;
 
     cout << "Heap sort :";
-    int max_index = myHeap.max_index;
-    for(int i=0; i<=max_index; i++){
+    size = myHeap.size;
+    for(int i=0; i<size; i++){
         cout << myHeap.pop() << " ";
     }
     cout << endl;
