@@ -67,6 +67,7 @@ void BinaryHeap::Heapify(int parent_index)
 
 }
 
+//initialize
 BinaryHeap::BinaryHeap(int *arr, int arr_size)
 {
     data = vector<int>(arr, arr+arr_size);
