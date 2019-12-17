@@ -3,6 +3,7 @@ Name    :binary_heap
 Author  :srhuang
 Email   :lukyandy3162@gmail.com
 History :
+    20191218 add merge operation
     20191218 change to min heap
     20191129 Initial Version
 *****************************************************************/
@@ -25,6 +26,7 @@ public:
     void insert(int input);
     int extract_min();
     int minimum();
+    void merge(BinaryHeap &bh);
 };
 
 //core operation
@@ -113,15 +115,25 @@ int BinaryHeap::minimum()
     return data[0];
 }
 
+//union
+void BinaryHeap::merge(BinaryHeap &bh)
+{
+    data.insert(data.end(), bh.data.begin(), bh.data.end());
+    int size = data.size();
+    for(int i=(size-2)/2; i>=0; i--){
+        Heapify(i);
+    }
+}
+
 /*==============================================================*/
 //Function area
-int *random_case(int number)
+int *random_case(int base, int number)
 {
     int *result = new int[number];
 
     //generate index ordered arrary
     for(int i=0; i<number; i++){
-        result[i]=i+1;
+        result[i] = base + i;
     }
 
     //swap each position
@@ -143,7 +155,7 @@ int main(int argc, char const *argv[]){
     int size;
 
     //generate data
-    int *random_data = random_case(n);
+    int *random_data = random_case(1, n);
 
 #if DEBUG
     cout << "Before build Heap :";
@@ -189,6 +201,22 @@ int main(int argc, char const *argv[]){
 #endif
 
     cout << "minimum :" << myHeap.minimum() << endl;
+
+    //generate another random data
+    int *random_data2 = random_case(6, n);
+
+#if DEBUG
+    cout << "Before build Heap :";
+    for(int i=0; i<n; i++){
+        cout << random_data2[i] << " ";
+    }
+    cout << endl;
+#endif
+
+    BinaryHeap myHeap2(random_data2, n);
+
+    //union
+    myHeap.merge(myHeap2);
 
     cout << "Heap sort :";
     size = myHeap.data.size();
