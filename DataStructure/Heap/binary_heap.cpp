@@ -3,6 +3,7 @@ Name    :binary_heap
 Author  :srhuang
 Email   :lukyandy3162@gmail.com
 History :
+    20191218 change to min heap
     20191129 Initial Version
 *****************************************************************/
 #include <iostream>
@@ -14,28 +15,29 @@ using namespace std::chrono;
 
 /*==============================================================*/
 //Global area
-class MaxBinaryHeap{
-    void Heapify(vector<int> &input, int root_index);
-    void BuildHeap(vector<int> &input);
+class BinaryHeap{
+    //core operation
+    void Heapify(int root_index);
 public:
     vector<int> data;
-    int size;
-    MaxBinaryHeap(int *arr, int size);
+
+    BinaryHeap(int *arr, int size);
     void insert(int input);
-    int pop();
-    int peek();
+    int extract_min();
+    int minimum();
 };
 
-//top-down
-void MaxBinaryHeap::Heapify(vector<int> &input, int parent_index)
+//core operation
+void BinaryHeap::Heapify(int parent_index)
 {
     int left_index = 2*parent_index + 1;
     int right_index = 2*parent_index + 2;
     int largest_index;
+    int size = data.size();
 
     //check left child
     if((left_index < size) &&
-        input[left_index] > input[parent_index])
+        data[left_index] > data[parent_index])
     {
         largest_index = left_index;
     }else{
@@ -44,7 +46,7 @@ void MaxBinaryHeap::Heapify(vector<int> &input, int parent_index)
 
     //check right child
     if((right_index < size) &&
-        input[right_index] > input[largest_index])
+        data[right_index] > data[largest_index])
     {
         largest_index = right_index;
     }
@@ -52,36 +54,30 @@ void MaxBinaryHeap::Heapify(vector<int> &input, int parent_index)
     //check if need heapify
     if(largest_index != parent_index){
         //swap
-        int temp = input[parent_index];
-        input[parent_index] = input[largest_index];
-        input[largest_index] = temp;
+        int temp = data[parent_index];
+        data[parent_index] = data[largest_index];
+        data[largest_index] = temp;
 
         //keep heapify
-        Heapify(input, largest_index);
+        Heapify(largest_index);
     }
 
 }
 
-//bottom-up
-void MaxBinaryHeap::BuildHeap(vector<int> &input)
+BinaryHeap::BinaryHeap(int *arr, int arr_size)
 {
+    data = vector<int>(arr, arr+arr_size);
+    int size = data.size();
     for(int i=(size-2)/2; i>=0; i--){
-        Heapify(input, i);
+        Heapify(i);
     }
 }
 
-MaxBinaryHeap::MaxBinaryHeap(int *arr, int size)
-{
-    data = vector<int>(arr, arr+size);
-    this->size = size;
-    BuildHeap(data);
-}
-
-//public insert
-void MaxBinaryHeap::insert(int input)
+//insert
+void BinaryHeap::insert(int input)
 {
     data.push_back(input);
-    size = data.size();
+    int size = data.size();
     int current_index = size-1;
     int parent_index = (current_index-1)/2;
     while(current_index > 0 && (data[parent_index] < data[current_index]))
@@ -97,21 +93,22 @@ void MaxBinaryHeap::insert(int input)
     }
 }
 
-int MaxBinaryHeap::pop()
+//extract min
+int BinaryHeap::extract_min()
 {
     int result = data[0];
 
     data[0] = data.back();
     data.pop_back();
-    size = data.size();
 
-    //top-down
-    Heapify(data, 0);
+    //heapify from the root
+    Heapify(0);
 
     return result;
 }
 
-int MaxBinaryHeap::peek()
+//minimum
+int BinaryHeap::minimum()
 {
     return data[0];
 }
@@ -156,13 +153,13 @@ int main(int argc, char const *argv[]){
     cout << endl;
 #endif
 
-    MaxBinaryHeap myHeap(random_data, n);
+    BinaryHeap myHeap(random_data, n);
 
 
 
 #if DEBUG
     cout << "\nAfter build Heap :";
-    size = myHeap.size;
+    size = myHeap.data.size();
     for(int i=0; i<size; i++){
         cout << myHeap.data[i] << " ";
     }
@@ -173,30 +170,30 @@ int main(int argc, char const *argv[]){
 
 #if DEBUG
     cout << "\nAfter insert :";
-    size = myHeap.size;
+    size = myHeap.data.size();
     for(int i=0; i<size; i++){
         cout << myHeap.data[i] << " ";
     }
     cout << endl;
 #endif
 
-    int max = myHeap.pop();
+    int max = myHeap.extract_min();
     
 #if DEBUG
-    cout << "\nAfter pop :";
-    size = myHeap.size;
+    cout << "\nAfter extract min :";
+    size = myHeap.data.size();
     for(int i=0; i<size; i++){
         cout << myHeap.data[i] << " ";
     }
     cout << endl;
 #endif
 
-    cout << "peek :" << myHeap.peek() << endl;
+    cout << "minimum :" << myHeap.minimum() << endl;
 
     cout << "Heap sort :";
-    size = myHeap.size;
+    size = myHeap.data.size();
     for(int i=0; i<size; i++){
-        cout << myHeap.pop() << " ";
+        cout << myHeap.extract_min() << " ";
     }
     cout << endl;
 
