@@ -56,7 +56,7 @@ Node *LeftistHeap::meld(Node *h1, Node *h2)
     }
 
     //pick the new root
-    if(h2->data > h1->data){
+    if(h2->data < h1->data){
         meld_root = h2;
         meld_child = h1;
     }else{
