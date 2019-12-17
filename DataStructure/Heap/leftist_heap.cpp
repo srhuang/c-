@@ -3,6 +3,7 @@ Name    :leftist_heap
 Author  :srhuang
 Email   :lukyandy3162@gmail.com
 History :
+    20191218 change to min heap
     20191212 Initial Version
 *****************************************************************/
 #include <iostream>
@@ -15,32 +16,36 @@ using namespace std::chrono;
 
 /*==============================================================*/
 //Global area
-struct LeftistNode{
+struct Node{
     int data;
-    LeftistNode *left=NULL;
-    LeftistNode *right=NULL;
+    Node *left=NULL;
+    Node *right=NULL;
     int s_value=1;
 };
 
-class MaxLeftistHeap{
-    LeftistNode *meld(LeftistNode *h1, LeftistNode *h2);
+class LeftistHeap{
+    //core operation
+    Node *meld(Node *h1, Node *h2);
 public:
-    LeftistNode *root;
+    Node *root;
     int size;
-    MaxLeftistHeap(int *arr, int size);
+
+    //five operations
+    LeftistHeap(int *arr, int size);
     void insert(int input);
-    int pop();
-    int peek();
-    void merge(MaxLeftistHeap &lh);
+    int extract_min();
+    int minimum();
+    void merge(LeftistHeap &lh);
 
     //for learning not necessary
-    void preorderTraversal(LeftistNode *parent);
+    void preorderTraversal(Node *parent);
 };
 
-LeftistNode *MaxLeftistHeap::meld(LeftistNode *h1, LeftistNode *h2)
+//core operation
+Node *LeftistHeap::meld(Node *h1, Node *h2)
 {
-    LeftistNode *meld_root;
-    LeftistNode *meld_child;
+    Node *meld_root;
+    Node *meld_child;
 
     //check the null head
     if(NULL == h1){
@@ -69,7 +74,7 @@ LeftistNode *MaxLeftistHeap::meld(LeftistNode *h1, LeftistNode *h2)
     }else{
         //check the s value
         if(meld_root->left->s_value < meld_root->right->s_value){
-            LeftistNode *temp;
+            Node *temp;
             temp = meld_root->left;
             meld_root->left = meld_root->right;
             meld_root->right = temp;
@@ -81,30 +86,30 @@ LeftistNode *MaxLeftistHeap::meld(LeftistNode *h1, LeftistNode *h2)
     return meld_root;
 }
 
-//constructor
-MaxLeftistHeap::MaxLeftistHeap(int *arr, int size)
+//Initialize
+LeftistHeap::LeftistHeap(int *arr, int size)
 {
     //assign size
     this->size = size;
 
     //push into queue
-    queue<LeftistNode*> q;
+    queue<Node*> q;
     for(int i=0; i<size; i++){
-        LeftistNode *newNode = new LeftistNode;
+        Node *newNode = new Node;
         newNode->data = arr[i];
         q.push(newNode);
     }
 
-    //pop two elements and then meld before push back into the queue
+    //extract_min two elements and then meld before push back into the queue
     while(q.size() >= 2){
-        //pop two elements
-        LeftistNode *h1 = q.front();
+        //extract_min two elements
+        Node *h1 = q.front();
         q.pop();
-        LeftistNode *h2 = q.front();
+        Node *h2 = q.front();
         q.pop();
 
         //meld
-        LeftistNode *h_meld = meld(h1, h2);
+        Node *h_meld = meld(h1, h2);
 
         //push back into queue
         q.push(h_meld);
@@ -114,27 +119,21 @@ MaxLeftistHeap::MaxLeftistHeap(int *arr, int size)
     q.pop();
 }
 
-int MaxLeftistHeap::peek()
+//insert
+void LeftistHeap::insert(int input)
 {
-    return root->data;
+    Node *newNode = new Node;
+    newNode->data = input;
+    root = meld(root, newNode);
+
+    //update size
+    size++;
 }
 
-//for learning not necessary
-void MaxLeftistHeap::preorderTraversal(LeftistNode *parent)
+//extract_min
+int LeftistHeap::extract_min()
 {
-    if(NULL == parent){
-        return;
-    }
-
-    cout << " " << parent->data;
-    preorderTraversal(parent->left);
-    preorderTraversal(parent->right);
-}
-
-//pop
-int MaxLeftistHeap::pop()
-{
-    LeftistNode *pre = root;
+    Node *pre = root;
 
     //meld two subtree
     root = meld(root->left, root->right);
@@ -148,33 +147,40 @@ int MaxLeftistHeap::pop()
     return pre->data;
 }
 
-//insert
-void MaxLeftistHeap::insert(int input)
+//minimum
+int LeftistHeap::minimum()
 {
-    LeftistNode *newNode = new LeftistNode;
-    newNode->data = input;
-    root = meld(root, newNode);
-
-    //update size
-    size++;
+    return root->data;
 }
 
 //merge
-void MaxLeftistHeap::merge(MaxLeftistHeap &lh)
+void LeftistHeap::merge(LeftistHeap &lh)
 {
     root = meld(root, lh.root);
     size = size + lh.size;
 }
 
+//for learning not necessary
+void LeftistHeap::preorderTraversal(Node *parent)
+{
+    if(NULL == parent){
+        return;
+    }
+
+    cout << " " << parent->data;
+    preorderTraversal(parent->left);
+    preorderTraversal(parent->right);
+}
+
 /*==============================================================*/
 //Function area
-int *random_case(int number)
+int *random_case(int base, int number)
 {
     int *result = new int[number];
 
     //generate index ordered arrary
     for(int i=0; i<number; i++){
-        result[i]=i+1;
+        result[i] = base + i;
     }
 
     //swap each position
@@ -195,7 +201,7 @@ int main(int argc, char const *argv[]){
     int n=SCALE;
 
     //generate data
-    int *random_data = random_case(n);
+    int *random_data = random_case(1, n);
 
 #if DEBUG
     cout << "Before build Heap :";
@@ -206,7 +212,7 @@ int main(int argc, char const *argv[]){
 #endif
 
     //constructor
-    MaxLeftistHeap myHeap(random_data, n);
+    LeftistHeap myHeap(random_data, n);
     cout << "myHeap size :" << myHeap.size << endl;
 
     cout << "The root is :" << myHeap.root->data <<
@@ -223,16 +229,16 @@ int main(int argc, char const *argv[]){
     cout << "myHeap size :" << myHeap.size << endl;
 
     //merge
-    int *random_data2 = random_case(n*2);
-    MaxLeftistHeap myHeap2(random_data2, n*2);
+    int *random_data2 = random_case(6, n);
+    LeftistHeap myHeap2(random_data2, n);
     myHeap.merge(myHeap2);
     cout << "myHeap size :" << myHeap.size << endl;
 
-    //pop
+    //extract_min
     cout << "Heap sort :";
     int size = myHeap.size;
     for(int i=0; i<size; i++){
-        cout << myHeap.pop() << " ";
+        cout << myHeap.extract_min() << " ";
     }
     cout << endl;
 
