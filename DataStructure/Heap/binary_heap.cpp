@@ -22,6 +22,7 @@ class BinaryHeap{
 public:
     vector<int> data;
 
+    //five operations
     BinaryHeap(int *arr, int size);
     void insert(int input);
     int extract_min();
