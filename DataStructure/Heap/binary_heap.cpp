@@ -35,34 +35,34 @@ void BinaryHeap::Heapify(int parent_index)
 {
     int left_index = 2*parent_index + 1;
     int right_index = 2*parent_index + 2;
-    int largest_index;
+    int heapify_index;
     int size = data.size();
 
     //check left child
     if((left_index < size) &&
-        data[left_index] > data[parent_index])
+        data[left_index] < data[parent_index])
     {
-        largest_index = left_index;
+        heapify_index = left_index;
     }else{
-        largest_index = parent_index;
+        heapify_index = parent_index;
     }
 
     //check right child
     if((right_index < size) &&
-        data[right_index] > data[largest_index])
+        data[right_index] < data[heapify_index])
     {
-        largest_index = right_index;
+        heapify_index = right_index;
     }
 
     //check if need heapify
-    if(largest_index != parent_index){
+    if(heapify_index != parent_index){
         //swap
         int temp = data[parent_index];
-        data[parent_index] = data[largest_index];
-        data[largest_index] = temp;
+        data[parent_index] = data[heapify_index];
+        data[heapify_index] = temp;
 
         //keep heapify
-        Heapify(largest_index);
+        Heapify(heapify_index);
     }
 
 }
