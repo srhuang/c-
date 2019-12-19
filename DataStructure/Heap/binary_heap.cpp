@@ -100,6 +100,9 @@ void BinaryHeap::insert(int input)
 //extract min
 int BinaryHeap::extract_min()
 {
+    if(data.empty())
+        return -1;
+
     int result = data[0];
 
     data[0] = data.back();
@@ -114,6 +117,9 @@ int BinaryHeap::extract_min()
 //minimum
 int BinaryHeap::minimum()
 {
+    if(data.empty())
+        return -1;
+
     return data[0];
 }
 

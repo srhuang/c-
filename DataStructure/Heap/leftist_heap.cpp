@@ -133,6 +133,9 @@ void LeftistHeap::insert(int input)
 //extract_min
 int LeftistHeap::extract_min()
 {
+    if(NULL == root)
+        return -1;
+
     Node *pre = root;
 
     //meld two subtree
@@ -150,6 +153,9 @@ int LeftistHeap::extract_min()
 //minimum
 int LeftistHeap::minimum()
 {
+    if(NULL == root)
+        return -1;
+
     return root->data;
 }
 
